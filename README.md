@@ -83,21 +83,6 @@ The setup script creates these core tables:
 5. Start Apache/PHP and MySQL.
 6. Open the site in your browser, for example `http://localhost/buildspace/`.
 
-## Demo Accounts
-
-The seed data includes demo users. The setup script notes that the password is:
-
-```text
-password123
-```
-
-Example demo emails include:
-
-- arjun@demo.com
-- priya@demo.com
-- sneha@demo.com
-- vikram@demo.com
-
 ## API Overview
 
 The frontend uses `assets/js/api.js` to call PHP endpoints:
@@ -120,7 +105,6 @@ The frontend uses `assets/js/api.js` to call PHP endpoints:
 
 ## Deployment Notes
 
-- Replace development or hosted database credentials before publishing publicly.
 - Make sure your hosting environment supports PHP sessions and PDO MySQL.
 - Import `config/setup.sql` before using the app on a new database.
 - If deploying to a subdirectory, keep the current relative paths intact.
