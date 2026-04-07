@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+/**
+ * BuildSpace — Dashboard / Feed Page
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const FeedPage = {
     async render() {
         const content = document.getElementById('page-content');

@@ -1,5 +1,11 @@
 <?php
+<<<<<<< HEAD
 
+=======
+/**
+ * BuildSpace - Auth: Login
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 require_once __DIR__ . '/../../config/database.php';
 header('Content-Type: application/json');
 
@@ -27,6 +33,10 @@ if (!$user || !password_verify($password, $user['password_hash'])) {
 startSession();
 $_SESSION['user_id'] = $user['id'];
 
+<<<<<<< HEAD
+=======
+// Update online status
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 $stmt = $db->prepare('UPDATE users SET is_online = 1, last_seen = NOW() WHERE id = ?');
 $stmt->execute([$user['id']]);
 

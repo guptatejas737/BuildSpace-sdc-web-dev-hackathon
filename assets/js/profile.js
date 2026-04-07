@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+/**
+ * BuildSpace — Profile Page
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const ProfilePage = {
     async render(username) {
         const content = document.getElementById('page-content');
@@ -98,7 +104,11 @@ const ProfilePage = {
                                     </div>
                                     <div style="display:flex;align-items:center;gap:6px">
                                         ${!isOwnProfile && Auth.isAuthenticated ? `
+<<<<<<< HEAD
                                             <button class="endorse-btn ${endorsedSkills.includes(skill.id) ? 'endorsed' : ''}"
+=======
+                                            <button class="endorse-btn ${endorsedSkills.includes(skill.id) ? 'endorsed' : ''}" 
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                                                 onclick="ProfilePage.toggleEndorse(${user.id}, ${skill.id}, this)"
                                                 title="${endorsedSkills.includes(skill.id) ? 'Remove endorsement' : 'Endorse this skill'}">
                                                 <i data-lucide="thumbs-up"></i>
@@ -117,7 +127,11 @@ const ProfilePage = {
                             `).join('') : '<p style="color:var(--text-tertiary)">No skills added yet</p>'}
                         </div>
                     </div>
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                     <div>
                         <div class="card">
                             <h3 class="card-title" style="margin-bottom:16px">
@@ -151,6 +165,7 @@ const ProfilePage = {
     async renderEditProfile() {
         if (!Auth.requireAuth()) return;
         const content = document.getElementById('page-content');
+<<<<<<< HEAD
 
         try {
             const user = await API.users.profile(Auth.currentUser.id);
@@ -158,11 +173,24 @@ const ProfilePage = {
             content.innerHTML = `
                 <button class="btn btn-ghost" onclick="App.navigate('/profile/${user.username}')" style="margin-bottom:16px"><i data-lucide="arrow-left"></i> Back to Profile</button>
 
+=======
+        
+        try {
+            const user = await API.users.profile(Auth.currentUser.id);
+            
+            content.innerHTML = `
+                <button class="btn btn-ghost" onclick="App.navigate('/profile/${user.username}')" style="margin-bottom:16px"><i data-lucide="arrow-left"></i> Back to Profile</button>
+                
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                 <div class="card" style="max-width:700px;margin:0 auto;padding:32px">
                     <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:24px;display:flex;align-items:center;gap:10px">
                         <i data-lucide="edit" style="color:var(--purple-500)"></i> Edit Profile
                     </h2>
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                     <form id="edit-profile-form">
                         <div class="form-row">
                             <div class="form-group">
@@ -178,17 +206,29 @@ const ProfilePage = {
                                 </select>
                             </div>
                         </div>
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         <div class="form-group">
                             <label>Bio</label>
                             <textarea class="mega-input" id="ep-bio" placeholder="Tell the community about yourself...">${Utils.escapeHtml(user.bio || '')}</textarea>
                         </div>
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         <div class="form-group">
                             <label>Location</label>
                             <input class="input-plain" id="ep-location" value="${Utils.escapeHtml(user.location || '')}" placeholder="e.g., Mumbai, India">
                         </div>
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         <div class="form-row">
                             <div class="form-group">
                                 <label>GitHub URL</label>
@@ -199,12 +239,20 @@ const ProfilePage = {
                                 <input class="input-plain" id="ep-linkedin" value="${Utils.escapeHtml(user.linkedin_url || '')}" placeholder="https://linkedin.com/in/username">
                             </div>
                         </div>
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         <div class="form-group">
                             <label>Portfolio URL</label>
                             <input class="input-plain" id="ep-portfolio" value="${Utils.escapeHtml(user.portfolio_url || '')}" placeholder="https://yourwebsite.com">
                         </div>
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px">
                             <i data-lucide="check"></i> Save Changes
                         </button>
@@ -212,7 +260,11 @@ const ProfilePage = {
                 </div>
             `;
             lucide.createIcons();
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             document.getElementById('edit-profile-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 try {
@@ -258,12 +310,21 @@ const ProfilePage = {
 
     async showAddSkillModal() {
         if (!Auth.requireAuth()) return;
+<<<<<<< HEAD
 
         let skills = [];
         try { skills = await API.users.allSkills(); } catch(e) {}
 
         const categories = [...new Set(skills.map(s => s.category))];
 
+=======
+        
+        let skills = [];
+        try { skills = await API.users.allSkills(); } catch(e) {}
+        
+        const categories = [...new Set(skills.map(s => s.category))];
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         const modalHtml = Components.modal('add-skill-modal', '<i data-lucide="award"></i> Add Skill', `
             <div class="form-group">
                 <label>Category</label>
@@ -289,7 +350,11 @@ const ProfilePage = {
             </div>
             <button class="btn btn-primary btn-full" onclick="ProfilePage.addSelectedSkill()"><i data-lucide="plus"></i> Add Skill</button>
         `);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.body.insertAdjacentHTML('beforeend', modalHtml);
         lucide.createIcons();
     },
@@ -318,7 +383,11 @@ const ProfilePage = {
     async addSelectedSkill() {
         if (!this._selectedSkillId) { Toast.warning('Please select a skill'); return; }
         const proficiency = document.querySelector('#skill-proficiency .selected')?.dataset.val || 'intermediate';
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         try {
             await API.users.addSkill({ skill_id: this._selectedSkillId, proficiency });
             document.getElementById('add-skill-modal').remove();
@@ -349,6 +418,12 @@ const ProfilePage = {
     }
 };
 
+<<<<<<< HEAD
+=======
+/**
+ * Developers Page (user listing)
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const DevelopersPage = {
     currentPage: 1,
     searchQuery: '',
@@ -390,6 +465,10 @@ const DevelopersPage = {
             `;
             lucide.createIcons();
 
+<<<<<<< HEAD
+=======
+            // Search handler
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             const searchInput = document.getElementById('dev-search');
             if (searchInput) {
                 searchInput.addEventListener('input', Utils.debounce((e) => {

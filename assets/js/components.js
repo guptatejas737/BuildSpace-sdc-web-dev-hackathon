@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 const Components = {
 
+=======
+/**
+ * BuildSpace — Reusable UI Components
+ */
+const Components = {
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     skillTag(skill, small = false) {
         const cls = small ? 'skill-tag' : `skill-tag ${skill.category || ''}`;
         return `<span class="${cls}" title="${skill.proficiency || ''}">${Utils.escapeHtml(skill.name)}</span>`;

@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+/**
+ * BuildSpace — API Client
+ * Centralized API communication layer
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const API = {
     baseUrl: '',
 
@@ -6,7 +13,11 @@ const API = {
             headers: { 'Content-Type': 'application/json' },
             credentials: 'same-origin'
         };
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         const config = { ...defaultOptions, ...options };
         if (options.body && typeof options.body === 'object') {
             config.body = JSON.stringify(options.body);
@@ -15,11 +26,19 @@ const API = {
         try {
             const response = await fetch(this.baseUrl + url, config);
             const data = await response.json();
+<<<<<<< HEAD
 
             if (!response.ok) {
                 throw new Error(data.error || `HTTP ${response.status}`);
             }
 
+=======
+            
+            if (!response.ok) {
+                throw new Error(data.error || `HTTP ${response.status}`);
+            }
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             return data;
         } catch (error) {
             if (error.message.includes('Failed to fetch')) {
@@ -34,6 +53,10 @@ const API = {
     put(url, body) { return this.request(url, { method: 'PUT', body }); },
     delete(url) { return this.request(url, { method: 'DELETE' }); },
 
+<<<<<<< HEAD
+=======
+    // Auth
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     auth: {
         login: (data) => API.post('api/auth/login.php', data),
         register: (data) => API.post('api/auth/register.php', data),
@@ -41,6 +64,10 @@ const API = {
         session: () => API.get('api/auth/session.php'),
     },
 
+<<<<<<< HEAD
+=======
+    // Users
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     users: {
         profile: (idOrUsername) => API.get(`api/users/profile.php?${isNaN(idOrUsername) ? 'username' : 'id'}=${idOrUsername}`),
         myProfile: () => API.get('api/users/profile.php'),
@@ -54,6 +81,10 @@ const API = {
         unendorse: (userId, skillId) => API.delete(`api/users/endorse.php?user_id=${userId}&skill_id=${skillId}`),
     },
 
+<<<<<<< HEAD
+=======
+    // Projects
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     projects: {
         list: (params = {}) => API.get(`api/projects/index.php?${new URLSearchParams(params)}`),
         get: (id) => API.get(`api/projects/index.php?id=${id}`),
@@ -65,6 +96,10 @@ const API = {
         leave: (projectId) => API.delete(`api/projects/members.php?project_id=${projectId}`),
     },
 
+<<<<<<< HEAD
+=======
+    // Opportunities
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     opportunities: {
         list: (params = {}) => API.get(`api/opportunities/index.php?${new URLSearchParams(params)}`),
         get: (id) => API.get(`api/opportunities/index.php?id=${id}`),
@@ -75,44 +110,75 @@ const API = {
         handleApplication: (data) => API.put('api/opportunities/applications.php', data),
     },
 
+<<<<<<< HEAD
+=======
+    // Feed
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     feed: {
         get: (params = {}) => API.get(`api/feed/index.php?${new URLSearchParams(params)}`),
     },
 
+<<<<<<< HEAD
+=======
+    // Messages
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     messages: {
         conversations: () => API.get('api/messages/index.php'),
         getMessages: (userId) => API.get(`api/messages/index.php?user_id=${userId}`),
         send: (data) => API.post('api/messages/index.php', data),
     },
 
+<<<<<<< HEAD
+=======
+    // Notifications
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     notifications: {
         get: (params = {}) => API.get(`api/notifications/index.php?${new URLSearchParams(params)}`),
         markRead: (id) => API.put('api/notifications/index.php', id ? { id } : {}),
     },
 };
 
+<<<<<<< HEAD
+=======
+// Toast notification system
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const Toast = {
     show(message, type = 'info', duration = 3000) {
         const container = document.getElementById('toast-container');
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         const icons = {
             success: 'check-circle',
             error: 'alert-circle',
             warning: 'alert-triangle',
             info: 'info'
         };
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         toast.innerHTML = `
             <div class="toast-icon"><i data-lucide="${icons[type]}"></i></div>
             <span class="toast-message">${message}</span>
             <div class="toast-progress"></div>
         `;
+<<<<<<< HEAD
 
         container.appendChild(toast);
         lucide.createIcons({ nodes: [toast] });
 
+=======
+        
+        container.appendChild(toast);
+        lucide.createIcons({ nodes: [toast] });
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         setTimeout(() => {
             toast.classList.add('toast-out');
             setTimeout(() => toast.remove(), 300);
@@ -125,12 +191,20 @@ const Toast = {
     info: (msg) => Toast.show(msg, 'info'),
 };
 
+<<<<<<< HEAD
+=======
+// Utility functions
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const Utils = {
     timeAgo(dateStr) {
         const date = new Date(dateStr);
         const now = new Date();
         const seconds = Math.floor((now - date) / 1000);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         if (seconds < 60) return 'just now';
         if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
         if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;

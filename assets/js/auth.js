@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+/**
+ * BuildSpace — Auth Module
+ * Handles login, signup, session management
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const Auth = {
     currentUser: null,
     isAuthenticated: false,
@@ -19,15 +26,27 @@ const Auth = {
         const authButtons = document.getElementById('auth-buttons');
         const userMenu = document.getElementById('user-menu');
         const sidebarUser = document.getElementById('sidebar-user');
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         if (this.isAuthenticated && this.currentUser) {
             authButtons.style.display = 'none';
             userMenu.style.display = 'block';
             sidebarUser.style.display = 'flex';
+<<<<<<< HEAD
 
             document.getElementById('sidebar-username').textContent = this.currentUser.full_name;
             document.getElementById('sidebar-role').textContent = this.currentUser.role;
 
+=======
+            
+            document.getElementById('sidebar-username').textContent = this.currentUser.full_name;
+            document.getElementById('sidebar-role').textContent = this.currentUser.role;
+            
+            // Update avatars
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             const avatarInitials = Utils.getInitials(this.currentUser.full_name);
             const avatarElements = ['sidebar-avatar', 'topbar-avatar'];
             avatarElements.forEach(id => {
@@ -52,9 +71,15 @@ const Auth = {
         const signupForm = document.getElementById('signup-form');
         const title = document.getElementById('auth-modal-title');
         const subtitle = document.getElementById('auth-modal-subtitle');
+<<<<<<< HEAD
 
         modal.style.display = 'flex';
 
+=======
+        
+        modal.style.display = 'flex';
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         if (mode === 'login') {
             loginForm.style.display = 'block';
             signupForm.style.display = 'none';
@@ -128,15 +153,27 @@ const Auth = {
     },
 
     setupEventListeners() {
+<<<<<<< HEAD
 
+=======
+        // Login/signup buttons
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('login-btn').addEventListener('click', () => this.showModal('login'));
         document.getElementById('signup-btn').addEventListener('click', () => this.showModal('signup'));
         document.getElementById('auth-modal-close').addEventListener('click', () => this.hideModal());
         document.getElementById('switch-to-signup').addEventListener('click', (e) => { e.preventDefault(); this.showModal('signup'); });
         document.getElementById('switch-to-login').addEventListener('click', (e) => { e.preventDefault(); this.showModal('login'); });
+<<<<<<< HEAD
 
         document.querySelector('#auth-modal .modal-backdrop').addEventListener('click', () => this.hideModal());
 
+=======
+        
+        // Modal backdrop close
+        document.querySelector('#auth-modal .modal-backdrop').addEventListener('click', () => this.hideModal());
+        
+        // Login form
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const login = document.getElementById('login-email').value;
@@ -144,6 +181,10 @@ const Auth = {
             this.login(login, password);
         });
 
+<<<<<<< HEAD
+=======
+        // Signup form
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('signup-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const fullName = document.getElementById('signup-name').value;
@@ -153,12 +194,20 @@ const Auth = {
             this.register(fullName, username, email, password);
         });
 
+<<<<<<< HEAD
+=======
+        // Demo login buttons
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.querySelectorAll('.demo-user-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 this.login(btn.dataset.login, 'password123');
             });
         });
 
+<<<<<<< HEAD
+=======
+        // User dropdown
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('user-menu-btn').addEventListener('click', (e) => {
             e.stopPropagation();
             const dropdown = document.getElementById('user-dropdown');
@@ -184,6 +233,10 @@ const Auth = {
             this.logout();
         });
 
+<<<<<<< HEAD
+=======
+        // Sidebar settings button
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('sidebar-settings-btn').addEventListener('click', () => {
             if (this.currentUser) App.navigate(`/profile/${this.currentUser.username}`);
         });

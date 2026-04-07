@@ -1,12 +1,26 @@
 <?php
+<<<<<<< HEAD
 
+=======
+/**
+ * BuildSpace - Opportunities API
+ * GET: List/get opportunities
+ * POST: Create opportunity
+ * PUT: Update opportunity
+ * DELETE: Delete opportunity
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 require_once __DIR__ . '/../../config/database.php';
 header('Content-Type: application/json');
 
 $db = getDB();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+<<<<<<< HEAD
 
+=======
+    // Single opportunity
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     if (isset($_GET['id'])) {
         $stmt = $db->prepare('
             SELECT o.*, u.username as creator_username, u.full_name as creator_name, u.avatar_url as creator_avatar
@@ -15,17 +29,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $stmt->execute([$_GET['id']]);
         $opp = $stmt->fetch();
         if (!$opp) jsonError('Opportunity not found', 404);
+<<<<<<< HEAD
 
         $stmt = $db->prepare('SELECT COUNT(*) as cnt FROM opportunity_applications WHERE opportunity_id = ?');
         $stmt->execute([$opp['id']]);
         $opp['application_count'] = $stmt->fetch()['cnt'];
 
+=======
+        
+        // Applications count
+        $stmt = $db->prepare('SELECT COUNT(*) as cnt FROM opportunity_applications WHERE opportunity_id = ?');
+        $stmt->execute([$opp['id']]);
+        $opp['application_count'] = $stmt->fetch()['cnt'];
+        
+        // Check if current user applied
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         $currentUserId = getCurrentUserId();
         if ($currentUserId) {
             $stmt = $db->prepare('SELECT * FROM opportunity_applications WHERE opportunity_id = ? AND user_id = ?');
             $stmt->execute([$opp['id'], $currentUserId]);
             $opp['current_user_application'] = $stmt->fetch() ?: null;
+<<<<<<< HEAD
 
+=======
+            
+            // If creator, show applications
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             if ($currentUserId == $opp['creator_id']) {
                 $stmt = $db->prepare('
                     SELECT oa.*, u.username, u.full_name, u.avatar_url, u.bio
@@ -37,10 +66,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 $opp['applications'] = $stmt->fetchAll();
             }
         }
+<<<<<<< HEAD
 
         jsonResponse($opp);
     }
 
+=======
+        
+        jsonResponse($opp);
+    }
+    
+    // List opportunities
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     $type = $_GET['type'] ?? '';
     $status = $_GET['status'] ?? '';
     $search = $_GET['q'] ?? '';
@@ -48,10 +85,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $limit = min(50, max(1, intval($_GET['limit'] ?? 12)));
     $offset = ($page - 1) * $limit;
     $creatorId = $_GET['creator_id'] ?? '';
+<<<<<<< HEAD
 
     $where = ['1=1'];
     $params = [];
 
+=======
+    
+    $where = ['1=1'];
+    $params = [];
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     if (!empty($type)) {
         $where[] = 'o.type = ?';
         $params[] = $type;
@@ -71,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $where[] = 'o.creator_id = ?';
         $params[] = $creatorId;
     }
+<<<<<<< HEAD
 
     $whereStr = implode(' AND ', $where);
 
@@ -88,17 +133,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $stmt = $db->prepare($sql);
     $stmt->execute($params);
 
+=======
+    
+    $whereStr = implode(' AND ', $where);
+    
+    $countStmt = $db->prepare("SELECT COUNT(*) as total FROM opportunities o WHERE $whereStr");
+    $countStmt->execute($params);
+    $total = $countStmt->fetch()['total'];
+    
+    $sql = "SELECT o.*, u.username as creator_username, u.full_name as creator_name, u.avatar_url as creator_avatar,
+            (SELECT COUNT(*) FROM opportunity_applications WHERE opportunity_id = o.id) as application_count
+            FROM opportunities o 
+            JOIN users u ON o.creator_id = u.id
+            WHERE $whereStr 
+            ORDER BY o.created_at DESC 
+            LIMIT $limit OFFSET $offset";
+    $stmt = $db->prepare($sql);
+    $stmt->execute($params);
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     jsonResponse([
         'opportunities' => $stmt->fetchAll(),
         'total' => $total,
         'page' => $page,
         'pages' => ceil($total / $limit)
     ]);
+<<<<<<< HEAD
 
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userId = requireAuth();
     $input = getJsonInput();
 
+=======
+    
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $userId = requireAuth();
+    $input = getJsonInput();
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     $title = sanitize($input['title'] ?? '');
     $description = sanitize($input['description'] ?? '');
     $type = $input['type'] ?? '';
@@ -107,13 +179,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $isRemote = intval($input['is_remote'] ?? 1);
     $deadline = $input['deadline'] ?? null;
     $maxApplicants = isset($input['max_applicants']) ? intval($input['max_applicants']) : null;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     if (empty($title) || empty($description) || empty($type)) {
         jsonError('Title, description, and type are required');
     }
     if (!in_array($type, ['teammate', 'hiring', 'hackathon', 'opensource', 'mentorship'])) {
         jsonError('Invalid opportunity type');
     }
+<<<<<<< HEAD
 
     $stmt = $db->prepare('INSERT INTO opportunities (creator_id, title, description, type, skills_required, location, is_remote, deadline, max_applicants) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
     $stmt->execute([$userId, $title, $description, $type, $skillsRequired, $location, $isRemote, $deadline, $maxApplicants]);
@@ -124,10 +201,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     jsonResponse(['message' => 'Opportunity created', 'id' => $oppId], 201);
 
+=======
+    
+    $stmt = $db->prepare('INSERT INTO opportunities (creator_id, title, description, type, skills_required, location, is_remote, deadline, max_applicants) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt->execute([$userId, $title, $description, $type, $skillsRequired, $location, $isRemote, $deadline, $maxApplicants]);
+    $oppId = $db->lastInsertId();
+    
+    // Feed activity
+    $stmt = $db->prepare("INSERT INTO feed_activities (user_id, type, reference_id, reference_type, metadata) VALUES (?, 'opportunity_posted', ?, 'opportunity', ?)");
+    $stmt->execute([$userId, $oppId, json_encode(['title' => $title, 'type' => $type])]);
+    
+    jsonResponse(['message' => 'Opportunity created', 'id' => $oppId], 201);
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 } elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $userId = requireAuth();
     $input = getJsonInput();
     $oppId = intval($input['id'] ?? $_GET['id'] ?? 0);
+<<<<<<< HEAD
 
     if (!$oppId) jsonError('Opportunity ID required');
 
@@ -139,25 +230,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $updates = [];
     $params = [];
 
+=======
+    
+    if (!$oppId) jsonError('Opportunity ID required');
+    
+    $stmt = $db->prepare('SELECT * FROM opportunities WHERE id = ? AND creator_id = ?');
+    $stmt->execute([$oppId, $userId]);
+    if (!$stmt->fetch()) jsonError('Not authorized', 403);
+    
+    $allowedFields = ['title', 'description', 'type', 'status', 'skills_required', 'location', 'is_remote', 'deadline', 'max_applicants'];
+    $updates = [];
+    $params = [];
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     foreach ($allowedFields as $field) {
         if (isset($input[$field])) {
             $updates[] = "$field = ?";
             $params[] = is_string($input[$field]) ? sanitize($input[$field]) : $input[$field];
         }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     if (!empty($updates)) {
         $params[] = $oppId;
         $stmt = $db->prepare('UPDATE opportunities SET ' . implode(', ', $updates) . ' WHERE id = ?');
         $stmt->execute($params);
     }
+<<<<<<< HEAD
 
     jsonResponse(['message' => 'Opportunity updated']);
 
+=======
+    
+    jsonResponse(['message' => 'Opportunity updated']);
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $userId = requireAuth();
     $oppId = intval($_GET['id'] ?? 0);
     if (!$oppId) jsonError('Opportunity ID required');
+<<<<<<< HEAD
 
     $stmt = $db->prepare('SELECT * FROM opportunities WHERE id = ? AND creator_id = ?');
     $stmt->execute([$oppId, $userId]);
@@ -166,6 +281,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $db->prepare('DELETE FROM opportunities WHERE id = ?')->execute([$oppId]);
     jsonResponse(['message' => 'Opportunity deleted']);
 
+=======
+    
+    $stmt = $db->prepare('SELECT * FROM opportunities WHERE id = ? AND creator_id = ?');
+    $stmt->execute([$oppId, $userId]);
+    if (!$stmt->fetch()) jsonError('Not authorized', 403);
+    
+    $db->prepare('DELETE FROM opportunities WHERE id = ?')->execute([$oppId]);
+    jsonResponse(['message' => 'Opportunity deleted']);
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 } else {
     jsonError('Method not allowed', 405);
 }

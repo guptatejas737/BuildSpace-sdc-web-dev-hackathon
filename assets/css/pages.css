@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+/* ============================================================
+   BuildSpace — Page-Specific Styles
+   Dashboard, Projects, Opportunities, Profile, Messages
+   ============================================================ */
+
+/* ---------- Dashboard / Feed Page ---------- */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .dashboard-grid {
     display: grid;
     grid-template-columns: 1fr 360px;
@@ -89,6 +98,10 @@
     padding: 4px 20px;
 }
 
+<<<<<<< HEAD
+=======
+/* Trending Skills Widget */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .trending-item {
     display: flex;
     align-items: center;
@@ -118,6 +131,10 @@
 .trending-name { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); }
 .trending-meta { font-size: 0.75rem; color: var(--text-tertiary); }
 
+<<<<<<< HEAD
+=======
+/* Quick Actions Widget */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .quick-action {
     display: flex;
     align-items: center;
@@ -146,6 +163,10 @@
 .quick-action-arrow { color: var(--text-tertiary); }
 .quick-action-arrow svg { width: 14px; height: 14px; }
 
+<<<<<<< HEAD
+=======
+/* ---------- Projects Page ---------- */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .project-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -254,6 +275,10 @@
     font-weight: 500;
 }
 
+<<<<<<< HEAD
+=======
+/* ---------- Opportunities Page ---------- */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .opportunity-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -334,6 +359,10 @@
 .deadline-badge.soon { color: var(--amber-500); }
 .deadline-badge.normal { color: var(--green-500); }
 
+<<<<<<< HEAD
+=======
+/* ---------- Profile Page ---------- */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .profile-header {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -470,6 +499,10 @@
     gap: 24px;
 }
 
+<<<<<<< HEAD
+=======
+/* ---------- Messages Page ---------- */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .messages-container {
     display: grid;
     grid-template-columns: 340px 1fr;
@@ -588,6 +621,10 @@
     padding: 0 5px;
 }
 
+<<<<<<< HEAD
+=======
+/* Chat Panel */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .chat-panel {
     display: flex;
     flex-direction: column;
@@ -715,6 +752,10 @@
 
 .chat-empty svg { width: 48px; height: 48px; opacity: 0.3; }
 
+<<<<<<< HEAD
+=======
+/* ---------- Developers Page ---------- */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .developer-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -791,6 +832,10 @@
     justify-content: center;
 }
 
+<<<<<<< HEAD
+=======
+/* ---------- Create Modal ---------- */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 .create-modal-content {
     max-width: 600px;
     padding: 32px;
@@ -809,11 +854,19 @@
 
 .create-modal-title svg { color: var(--purple-500); }
 
+<<<<<<< HEAD
+=======
+/* ---------- Responsive Page Overrides ---------- */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 @media (max-width: 1100px) {
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     .dashboard-sidebar {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -825,11 +878,19 @@
     .profile-grid {
         grid-template-columns: 1fr;
     }
+<<<<<<< HEAD
 
     .messages-container {
         grid-template-columns: 1fr;
     }
 
+=======
+    
+    .messages-container {
+        grid-template-columns: 1fr;
+    }
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     .conversations-panel.hidden-mobile { display: none; }
     .chat-panel.hidden-mobile { display: none; }
 }
@@ -838,6 +899,7 @@
     .stats-row {
         grid-template-columns: repeat(2, 1fr);
     }
+<<<<<<< HEAD
 
     .dashboard-sidebar {
         grid-template-columns: 1fr;
@@ -847,6 +909,17 @@
     .profile-info { padding: 0 20px 20px; }
     .profile-name { font-size: 1.4rem; }
 
+=======
+    
+    .dashboard-sidebar {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-cover { height: 120px; }
+    .profile-info { padding: 0 20px 20px; }
+    .profile-name { font-size: 1.4rem; }
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     .profile-stats {
         gap: 16px;
     }
@@ -856,10 +929,18 @@
     .stats-row {
         grid-template-columns: 1fr;
     }
+<<<<<<< HEAD
 
     .welcome-banner {
         padding: 20px;
     }
 
+=======
+    
+    .welcome-banner {
+        padding: 20px;
+    }
+    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     .welcome-title { font-size: 1.2rem; }
 }

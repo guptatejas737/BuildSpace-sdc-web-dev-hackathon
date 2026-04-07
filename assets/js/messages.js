@@ -1,16 +1,30 @@
+<<<<<<< HEAD
+=======
+/**
+ * BuildSpace — Messages Page
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const MessagesPage = {
     activeConversation: null,
     pollTimer: null,
 
     async render(userId = null) {
         if (!Auth.requireAuth()) return;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         const content = document.getElementById('page-content');
         content.innerHTML = Components.loadingSkeletons(1);
 
         try {
             const data = await API.messages.conversations();
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             content.innerHTML = `
                 <div class="messages-container">
                     <div class="conversations-panel" id="conversations-panel">
@@ -18,7 +32,11 @@ const MessagesPage = {
                             <h2>Messages</h2>
                         </div>
                         <div class="conversations-list" id="conversations-list">
+<<<<<<< HEAD
                             ${data.conversations.length > 0 ?
+=======
+                            ${data.conversations.length > 0 ? 
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                                 data.conversations.map(c => this.conversationItem(c)).join('') :
                                 `<div class="empty-state" style="padding:40px 20px">
                                     <i data-lucide="message-circle" style="width:40px;height:40px;opacity:0.3;margin:0 auto 12px;display:block"></i>
@@ -74,7 +92,11 @@ const MessagesPage = {
     async openConversation(userId) {
         this.activeConversation = userId;
         this.stopPolling();
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         const chatPanel = document.getElementById('chat-panel');
         chatPanel.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;flex:1;color:var(--text-tertiary)">Loading...</div>';
 
@@ -97,7 +119,11 @@ const MessagesPage = {
                     </div>
                 </div>
                 <div class="chat-messages" id="chat-messages">
+<<<<<<< HEAD
                     ${data.messages.length > 0 ?
+=======
+                    ${data.messages.length > 0 ? 
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         data.messages.map(m => this.messageBubble(m)).join('') :
                         `<div class="chat-empty">
                             <i data-lucide="message-square"></i>
@@ -114,13 +140,25 @@ const MessagesPage = {
             `;
             lucide.createIcons();
 
+<<<<<<< HEAD
             const messagesEl = document.getElementById('chat-messages');
             messagesEl.scrollTop = messagesEl.scrollHeight;
 
+=======
+            // Scroll to bottom
+            const messagesEl = document.getElementById('chat-messages');
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+
+            // Enter to send
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             document.getElementById('chat-input').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') this.sendMessage();
             });
 
+<<<<<<< HEAD
+=======
+            // Highlight active conversation
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             document.querySelectorAll('.conversation-item').forEach(el => el.classList.remove('active'));
             const convItems = document.querySelectorAll('.conversation-item');
             convItems.forEach(el => {
@@ -129,13 +167,24 @@ const MessagesPage = {
                 }
             });
 
+<<<<<<< HEAD
+=======
+            // Mobile: show chat panel
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             if (window.innerWidth <= 900) {
                 document.getElementById('conversations-panel').classList.add('hidden-mobile');
                 document.getElementById('chat-back-btn').style.display = 'flex';
             }
 
+<<<<<<< HEAD
             this.startPolling(userId);
 
+=======
+            // Start polling for new messages
+            this.startPolling(userId);
+
+            // Update message badge
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             NotificationsModule.poll();
         } catch (error) {
             chatPanel.innerHTML = `<div class="chat-empty"><p>Error: ${error.message}</p></div>`;
@@ -167,10 +216,19 @@ const MessagesPage = {
                 content: message
             });
 
+<<<<<<< HEAD
             const messagesEl = document.getElementById('chat-messages');
             const emptyState = messagesEl.querySelector('.chat-empty');
             if (emptyState) emptyState.remove();
 
+=======
+            // Append message to UI immediately
+            const messagesEl = document.getElementById('chat-messages');
+            // Remove empty state if present
+            const emptyState = messagesEl.querySelector('.chat-empty');
+            if (emptyState) emptyState.remove();
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             messagesEl.insertAdjacentHTML('beforeend', this.messageBubble({
                 sender_id: Auth.currentUser.id,
                 content: message,
@@ -206,6 +264,10 @@ const MessagesPage = {
                 if (messagesEl && data.messages.length > 0) {
                     const currentCount = messagesEl.querySelectorAll('.chat-message').length;
                     if (data.messages.length > currentCount) {
+<<<<<<< HEAD
+=======
+                        // New messages received
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         const newMsgs = data.messages.slice(currentCount);
                         const emptyState = messagesEl.querySelector('.chat-empty');
                         if (emptyState) emptyState.remove();

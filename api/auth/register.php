@@ -1,5 +1,11 @@
 <?php
+<<<<<<< HEAD
 
+=======
+/**
+ * BuildSpace - Auth: Register
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 require_once __DIR__ . '/../../config/database.php';
 header('Content-Type: application/json');
 
@@ -31,6 +37,10 @@ if (strlen($password) < 6) {
 
 $db = getDB();
 
+<<<<<<< HEAD
+=======
+// Check if username or email already exists
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 $stmt = $db->prepare('SELECT id FROM users WHERE username = ? OR email = ?');
 $stmt->execute([$username, $email]);
 if ($stmt->fetch()) {
@@ -44,9 +54,17 @@ $stmt->execute([$username, $email, $password_hash, $full_name]);
 
 $userId = $db->lastInsertId();
 
+<<<<<<< HEAD
 startSession();
 $_SESSION['user_id'] = $userId;
 
+=======
+// Auto login after registration
+startSession();
+$_SESSION['user_id'] = $userId;
+
+// Create feed activity
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 $stmt = $db->prepare("INSERT INTO feed_activities (user_id, type, reference_id, reference_type, metadata) VALUES (?, 'profile_updated', ?, 'user', ?)");
 $stmt->execute([$userId, $userId, json_encode(['action' => 'joined BuildSpace', 'user_name' => $full_name])]);
 

@@ -1,20 +1,38 @@
+<<<<<<< HEAD
+=======
+/**
+ * BuildSpace — Notifications Module
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const NotificationsModule = {
     pollTimer: null,
     isDropdownOpen: false,
 
     init() {
+<<<<<<< HEAD
 
+=======
+        // Notification bell click
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('notif-btn').addEventListener('click', (e) => {
             e.stopPropagation();
             this.toggleDropdown();
         });
 
+<<<<<<< HEAD
+=======
+        // Close dropdown on outside click
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.notif-dropdown') && !e.target.closest('.notif-btn')) {
                 this.closeDropdown();
             }
         });
 
+<<<<<<< HEAD
+=======
+        // Mark all read
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('notif-mark-all').addEventListener('click', async () => {
             try {
                 await API.notifications.markRead();
@@ -47,10 +65,17 @@ const NotificationsModule = {
     async loadNotifications() {
         if (!Auth.isAuthenticated) return;
         const list = document.getElementById('notif-list');
+<<<<<<< HEAD
 
         try {
             const data = await API.notifications.get({ limit: 15 });
 
+=======
+        
+        try {
+            const data = await API.notifications.get({ limit: 15 });
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             if (data.notifications.length === 0) {
                 list.innerHTML = `
                     <div class="notif-empty">
@@ -71,7 +96,11 @@ const NotificationsModule = {
                         'message': '💬'
                     };
                     const icon = iconMap[n.type] || '🔔';
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                     return `
                         <div class="notif-item ${n.is_read ? '' : 'unread'}" onclick="NotificationsModule.handleClick(${n.id}, '${n.reference_type}', ${n.reference_id})" style="position:relative">
                             <div class="notif-icon">${icon}</div>
@@ -84,7 +113,11 @@ const NotificationsModule = {
                     `;
                 }).join('');
             }
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             lucide.createIcons();
         } catch (e) {
             list.innerHTML = '<div class="notif-empty"><p>Failed to load</p></div>';
@@ -92,11 +125,20 @@ const NotificationsModule = {
     },
 
     async handleClick(notifId, refType, refId) {
+<<<<<<< HEAD
 
         try { await API.notifications.markRead(notifId); } catch(e) {}
 
         this.closeDropdown();
 
+=======
+        // Mark as read
+        try { await API.notifications.markRead(notifId); } catch(e) {}
+        
+        this.closeDropdown();
+        
+        // Navigate to relevant page
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         if (refType === 'project') {
             App.navigate(`/projects/${refId}`);
         } else if (refType === 'opportunity') {
@@ -104,7 +146,11 @@ const NotificationsModule = {
         } else if (refType === 'user') {
             App.navigate(`/messages/${refId}`);
         }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         this.poll();
     },
 
@@ -112,7 +158,12 @@ const NotificationsModule = {
         if (!Auth.isAuthenticated) return;
         try {
             const data = await API.notifications.get({ limit: 1 });
+<<<<<<< HEAD
 
+=======
+            
+            // Update notification badge
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             const badge = document.getElementById('notif-badge');
             if (data.unread_count > 0) {
                 badge.style.display = 'flex';
@@ -121,6 +172,10 @@ const NotificationsModule = {
                 badge.style.display = 'none';
             }
 
+<<<<<<< HEAD
+=======
+            // Update message badge
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             const msgBadge = document.getElementById('msg-badge');
             if (data.unread_messages > 0) {
                 msgBadge.style.display = 'inline-flex';
@@ -141,7 +196,11 @@ const NotificationsModule = {
             clearInterval(this.pollTimer);
             this.pollTimer = null;
         }
+<<<<<<< HEAD
 
+=======
+        // Reset badges
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('notif-badge').style.display = 'none';
         document.getElementById('msg-badge').style.display = 'none';
     }

@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+=======
+/**
+ * BuildSpace — Main Application Router & Initialization
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const App = {
     currentPage: '',
 
     async init() {
+<<<<<<< HEAD
 
         await Auth.init();
         Auth.setupEventListeners();
@@ -19,13 +26,46 @@ const App = {
         const loadingScreen = document.getElementById('loading-screen');
         const app = document.getElementById('app');
 
+=======
+        // Initialize auth
+        await Auth.init();
+        Auth.setupEventListeners();
+
+        // Theme initialization
+        this.initTheme();
+
+        // Initialize notifications
+        NotificationsModule.init();
+
+        // Setup global search
+        this.setupSearch();
+
+        // Setup mobile sidebar
+        this.setupMobileSidebar();
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', () => this.route());
+
+        // Hide loading screen and show app
+        const loadingScreen = document.getElementById('loading-screen');
+        const app = document.getElementById('app');
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         setTimeout(() => {
             app.style.display = 'flex';
             loadingScreen.classList.add('fade-out');
             setTimeout(() => loadingScreen.remove(), 500);
+<<<<<<< HEAD
 
             this.route();
 
+=======
+            
+            // Route to current hash
+            this.route();
+            
+            // Initialize Lucide icons
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             lucide.createIcons();
         }, 800);
     },
@@ -40,6 +80,10 @@ const App = {
         const page = parts[0] || '';
         const param = parts[1] || null;
 
+<<<<<<< HEAD
+=======
+        // Update active nav
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.querySelectorAll('.nav-item').forEach(item => {
             item.classList.remove('active');
             const itemPage = item.dataset.page;
@@ -48,15 +92,29 @@ const App = {
             }
         });
 
+<<<<<<< HEAD
+=======
+        // Stop message polling when navigating away
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         if (page !== 'messages') {
             MessagesPage.stopPolling();
         }
 
+<<<<<<< HEAD
         const content = document.getElementById('page-content');
         content.style.animation = 'none';
         content.offsetHeight;
         content.style.animation = 'pageIn 0.4s ease';
 
+=======
+        // Reset page content animation
+        const content = document.getElementById('page-content');
+        content.style.animation = 'none';
+        content.offsetHeight; // Trigger reflow
+        content.style.animation = 'pageIn 0.4s ease';
+
+        // Route to page
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         switch (page) {
             case '':
             case 'feed':
@@ -89,17 +147,32 @@ const App = {
                 FeedPage.render();
         }
 
+<<<<<<< HEAD
         document.getElementById('sidebar').classList.remove('open');
 
         window.scrollTo(0, 0);
     },
 
+=======
+        // Close mobile sidebar
+        document.getElementById('sidebar').classList.remove('open');
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+    },
+
+    // Theme toggle
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     initTheme() {
         const saved = localStorage.getItem('buildspace-theme');
         if (saved) {
             document.documentElement.setAttribute('data-theme', saved);
         } else {
+<<<<<<< HEAD
 
+=======
+            // Default to dark
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             document.documentElement.setAttribute('data-theme', 'dark');
         }
         this.updateThemeIcon();
@@ -120,6 +193,10 @@ const App = {
         document.getElementById('theme-icon-light').style.display = isDark ? 'none' : '';
     },
 
+<<<<<<< HEAD
+=======
+    // Global search
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     setupSearch() {
         const input = document.getElementById('search-input');
         const results = document.getElementById('search-results');
@@ -128,7 +205,11 @@ const App = {
         input.addEventListener('input', (e) => {
             clearTimeout(searchTimer);
             const query = e.target.value.trim();
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             if (query.length < 2) {
                 results.style.display = 'none';
                 return;
@@ -136,7 +217,11 @@ const App = {
 
             searchTimer = setTimeout(async () => {
                 try {
+<<<<<<< HEAD
 
+=======
+                    // Search users, projects, and opportunities in parallel
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                     const [users, projects, opps] = await Promise.all([
                         API.users.search({ q: query, limit: 3 }),
                         API.projects.list({ q: query, limit: 3 }),
@@ -197,12 +282,20 @@ const App = {
             }, 300);
         });
 
+<<<<<<< HEAD
+=======
+        // Close search on click outside
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.search-bar')) {
                 results.style.display = 'none';
             }
         });
 
+<<<<<<< HEAD
+=======
+        // Keyboard shortcut Ctrl+K / Cmd+K
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
@@ -215,6 +308,10 @@ const App = {
         });
     },
 
+<<<<<<< HEAD
+=======
+    // Mobile sidebar
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     setupMobileSidebar() {
         document.getElementById('mobile-menu-btn').addEventListener('click', () => {
             document.getElementById('sidebar').classList.toggle('open');
@@ -224,6 +321,10 @@ const App = {
             document.getElementById('sidebar').classList.remove('open');
         });
 
+<<<<<<< HEAD
+=======
+        // Close sidebar when clicking a nav item on mobile
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', () => {
                 if (window.innerWidth <= 1024) {
@@ -234,4 +335,8 @@ const App = {
     }
 };
 
+<<<<<<< HEAD
+=======
+// Initialize app when DOM is ready
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 document.addEventListener('DOMContentLoaded', () => App.init());

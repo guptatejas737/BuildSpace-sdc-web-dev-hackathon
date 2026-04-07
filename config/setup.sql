@@ -1,6 +1,18 @@
+<<<<<<< HEAD
 CREATE DATABASE IF NOT EXISTS buildspace CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE buildspace;
 
+=======
+-- BuildSpace Database Setup
+-- Run this file to create the database and all tables
+
+CREATE DATABASE IF NOT EXISTS buildspace CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE buildspace;
+
+-- ============================================================
+-- USERS TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -22,6 +34,12 @@ CREATE TABLE IF NOT EXISTS users (
     INDEX idx_role (role)
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- SKILLS TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS skills (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) UNIQUE NOT NULL,
@@ -30,6 +48,12 @@ CREATE TABLE IF NOT EXISTS skills (
     INDEX idx_category (category)
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- USER_SKILLS TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS user_skills (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -40,6 +64,12 @@ CREATE TABLE IF NOT EXISTS user_skills (
     FOREIGN KEY (skill_id) REFERENCES skills(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- SKILL ENDORSEMENTS TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS skill_endorsements (
     id INT AUTO_INCREMENT PRIMARY KEY,
     endorser_id INT NOT NULL,
@@ -52,6 +82,12 @@ CREATE TABLE IF NOT EXISTS skill_endorsements (
     FOREIGN KEY (skill_id) REFERENCES skills(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- PROJECTS TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS projects (
     id INT AUTO_INCREMENT PRIMARY KEY,
     creator_id INT NOT NULL,
@@ -71,6 +107,12 @@ CREATE TABLE IF NOT EXISTS projects (
     INDEX idx_creator (creator_id)
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- PROJECT TECH STACK TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS project_tech_stack (
     id INT AUTO_INCREMENT PRIMARY KEY,
     project_id INT NOT NULL,
@@ -80,6 +122,12 @@ CREATE TABLE IF NOT EXISTS project_tech_stack (
     FOREIGN KEY (skill_id) REFERENCES skills(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- PROJECT MEMBERS TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS project_members (
     id INT AUTO_INCREMENT PRIMARY KEY,
     project_id INT NOT NULL,
@@ -93,6 +141,12 @@ CREATE TABLE IF NOT EXISTS project_members (
     INDEX idx_status (status)
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- OPPORTUNITIES TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS opportunities (
     id INT AUTO_INCREMENT PRIMARY KEY,
     creator_id INT NOT NULL,
@@ -113,6 +167,12 @@ CREATE TABLE IF NOT EXISTS opportunities (
     INDEX idx_deadline (deadline)
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- OPPORTUNITY APPLICATIONS TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS opportunity_applications (
     id INT AUTO_INCREMENT PRIMARY KEY,
     opportunity_id INT NOT NULL,
@@ -125,6 +185,12 @@ CREATE TABLE IF NOT EXISTS opportunity_applications (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- FEED ACTIVITIES TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS feed_activities (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -138,6 +204,12 @@ CREATE TABLE IF NOT EXISTS feed_activities (
     INDEX idx_type (type)
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- MESSAGES TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sender_id INT NOT NULL,
@@ -151,6 +223,12 @@ CREATE TABLE IF NOT EXISTS messages (
     INDEX idx_unread (receiver_id, is_read)
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- NOTIFICATIONS TABLE
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 CREATE TABLE IF NOT EXISTS notifications (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -166,8 +244,16 @@ CREATE TABLE IF NOT EXISTS notifications (
     INDEX idx_created (created_at)
 ) ENGINE=InnoDB;
 
+<<<<<<< HEAD
 INSERT INTO skills (name, category, icon) VALUES
 
+=======
+-- ============================================================
+-- SEED DATA: SKILLS
+-- ============================================================
+INSERT INTO skills (name, category, icon) VALUES
+-- Frontend
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 ('JavaScript', 'frontend', 'code'),
 ('TypeScript', 'frontend', 'code'),
 ('React', 'frontend', 'component'),
@@ -177,7 +263,11 @@ INSERT INTO skills (name, category, icon) VALUES
 ('HTML/CSS', 'frontend', 'palette'),
 ('Tailwind CSS', 'frontend', 'paintbrush'),
 ('Svelte', 'frontend', 'component'),
+<<<<<<< HEAD
 
+=======
+-- Backend
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 ('Node.js', 'backend', 'server'),
 ('Python', 'backend', 'code'),
 ('Java', 'backend', 'coffee'),
@@ -190,7 +280,11 @@ INSERT INTO skills (name, category, icon) VALUES
 ('Django', 'backend', 'layout'),
 ('Flask', 'backend', 'flask-conical'),
 ('Spring Boot', 'backend', 'leaf'),
+<<<<<<< HEAD
 
+=======
+-- DevOps
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 ('Docker', 'devops', 'container'),
 ('Kubernetes', 'devops', 'network'),
 ('AWS', 'devops', 'cloud'),
@@ -199,12 +293,20 @@ INSERT INTO skills (name, category, icon) VALUES
 ('CI/CD', 'devops', 'git-branch'),
 ('Linux', 'devops', 'terminal'),
 ('Terraform', 'devops', 'blocks'),
+<<<<<<< HEAD
 
+=======
+-- Design
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 ('Figma', 'design', 'figma'),
 ('UI/UX Design', 'design', 'palette'),
 ('Adobe XD', 'design', 'pen-tool'),
 ('Photoshop', 'design', 'image'),
+<<<<<<< HEAD
 
+=======
+-- Data
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 ('SQL', 'data', 'database'),
 ('MongoDB', 'data', 'database'),
 ('PostgreSQL', 'data', 'database'),
@@ -212,14 +314,22 @@ INSERT INTO skills (name, category, icon) VALUES
 ('Machine Learning', 'data', 'brain'),
 ('TensorFlow', 'data', 'brain'),
 ('Data Science', 'data', 'bar-chart'),
+<<<<<<< HEAD
 
+=======
+-- Mobile
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 ('React Native', 'mobile', 'smartphone'),
 ('Flutter', 'mobile', 'smartphone'),
 ('Swift', 'mobile', 'apple'),
 ('Kotlin', 'mobile', 'smartphone'),
 ('Android', 'mobile', 'smartphone'),
 ('iOS', 'mobile', 'smartphone'),
+<<<<<<< HEAD
 
+=======
+-- Other
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 ('Git', 'other', 'git-branch'),
 ('REST APIs', 'other', 'globe'),
 ('GraphQL', 'other', 'share-2'),
@@ -227,6 +337,12 @@ INSERT INTO skills (name, category, icon) VALUES
 ('Blockchain', 'other', 'link'),
 ('Cybersecurity', 'other', 'shield');
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- SEED DATA: DEMO USERS (password is 'password123' for all)
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 INSERT INTO users (username, email, password_hash, full_name, bio, github_url, linkedin_url, location, role) VALUES
 ('arjun_dev', 'arjun@demo.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Arjun Sharma', 'Full-stack developer passionate about building scalable web applications. Love React and Node.js. Always up for a hackathon! 🚀', 'https://github.com/arjundev', 'https://linkedin.com/in/arjundev', 'Mumbai, India', 'student'),
 ('priya_codes', 'priya@demo.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Priya Patel', 'ML enthusiast & backend wizard. Building intelligent systems one API at a time. Open source contributor 💻', 'https://github.com/priyacodes', 'https://linkedin.com/in/priyacodes', 'Bangalore, India', 'student'),
@@ -237,6 +353,7 @@ INSERT INTO users (username, email, password_hash, full_name, bio, github_url, l
 ('prof_kumar', 'kumar@demo.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Prof. Rajesh Kumar', 'CS Professor with 15+ years experience. Mentoring the next generation of developers. Specializing in distributed systems.', 'https://github.com/profkumar', 'https://linkedin.com/in/profkumar', 'IIT Delhi', 'mentor'),
 ('hackathon_org', 'org@demo.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'DevFest Organizers', 'We organize hackathons, coding competitions, and tech meetups across India. Join our next event! 🎉', NULL, 'https://linkedin.com/company/devfest', 'Pan India', 'organizer');
 
+<<<<<<< HEAD
 INSERT INTO user_skills (user_id, skill_id, proficiency) VALUES
 
 (1, 1, 'expert'), (1, 3, 'advanced'), (1, 10, 'advanced'), (1, 6, 'intermediate'), (1, 7, 'expert'), (1, 47, 'advanced'), (1, 48, 'advanced'),
@@ -251,6 +368,28 @@ INSERT INTO user_skills (user_id, skill_id, proficiency) VALUES
 
 (6, 43, 'expert'), (6, 42, 'advanced'), (6, 45, 'advanced'), (6, 1, 'advanced'), (6, 3, 'intermediate'), (6, 47, 'advanced');
 
+=======
+-- ============================================================
+-- SEED DATA: USER SKILLS
+-- ============================================================
+INSERT INTO user_skills (user_id, skill_id, proficiency) VALUES
+-- Arjun (full-stack)
+(1, 1, 'expert'), (1, 3, 'advanced'), (1, 10, 'advanced'), (1, 6, 'intermediate'), (1, 7, 'expert'), (1, 47, 'advanced'), (1, 48, 'advanced'),
+-- Priya (ML + backend)
+(2, 11, 'expert'), (2, 39, 'advanced'), (2, 40, 'intermediate'), (2, 19, 'advanced'), (2, 34, 'advanced'), (2, 36, 'intermediate'), (2, 47, 'advanced'),
+-- Rahul (DevOps)
+(3, 22, 'expert'), (3, 23, 'advanced'), (3, 24, 'advanced'), (3, 28, 'advanced'), (3, 11, 'intermediate'), (3, 14, 'intermediate'), (3, 47, 'expert'),
+-- Sneha (Design + Frontend)
+(4, 30, 'expert'), (4, 31, 'expert'), (4, 7, 'expert'), (4, 3, 'advanced'), (4, 1, 'advanced'), (4, 8, 'advanced'),
+-- Vikram (AI/ML)
+(5, 11, 'expert'), (5, 39, 'expert'), (5, 40, 'advanced'), (5, 41, 'advanced'), (5, 34, 'advanced'), (5, 49, 'intermediate'),
+-- Ananya (Mobile)
+(6, 43, 'expert'), (6, 42, 'advanced'), (6, 45, 'advanced'), (6, 1, 'advanced'), (6, 3, 'intermediate'), (6, 47, 'advanced');
+
+-- ============================================================
+-- SEED DATA: SKILL ENDORSEMENTS
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 INSERT INTO skill_endorsements (endorser_id, endorsed_user_id, skill_id) VALUES
 (2, 1, 1), (3, 1, 3), (4, 1, 7), (5, 1, 10),
 (1, 2, 11), (3, 2, 39), (5, 2, 19),
@@ -259,6 +398,12 @@ INSERT INTO skill_endorsements (endorser_id, endorsed_user_id, skill_id) VALUES
 (2, 5, 39), (3, 5, 11), (1, 5, 40),
 (1, 6, 43), (4, 6, 42), (5, 6, 45);
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- SEED DATA: PROJECTS
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 INSERT INTO projects (creator_id, title, description, short_description, status, repo_url, max_members, is_open) VALUES
 (1, 'EcoTrack - Carbon Footprint Tracker', 'A comprehensive web application that helps individuals and organizations track, analyze, and reduce their carbon footprint. Features include daily activity logging, AI-powered suggestions for reducing emissions, community challenges, and detailed analytics dashboards. Built with React, Node.js, and PostgreSQL.', 'Track and reduce your carbon footprint with AI-powered insights and community challenges.', 'active', 'https://github.com/arjundev/ecotrack', 5, 1),
 (2, 'MedAssist - AI Health Companion', 'An intelligent health assistant that uses machine learning to provide preliminary health assessments based on symptoms. Includes a medication reminder system, health journal, and integration with wearable devices. Built with Python/Flask backend and React frontend. Uses TensorFlow for the ML model.', 'AI-powered health companion for symptom analysis and medication management.', 'planning', 'https://github.com/priyacodes/medassist', 4, 1),
@@ -267,6 +412,7 @@ INSERT INTO projects (creator_id, title, description, short_description, status,
 (6, 'CampusConnect - University Social App', 'A mobile-first social platform for university students. Features include event discovery, study group formation, lost & found, anonymous confessions, and campus marketplace. Built with Flutter and Firebase.', 'University social platform for events, study groups, and campus life.', 'completed', 'https://github.com/ananyaflutter/campusconnect', 4, 0),
 (1, 'CodeReview Bot', 'An automated code review tool that uses GPT APIs to analyze pull requests and provide intelligent feedback. Supports multiple languages and can be integrated as a GitHub Action. Catches bugs, suggests improvements, and enforces coding standards automatically.', 'Automated AI-powered code review bot for GitHub pull requests.', 'planning', 'https://github.com/arjundev/codereview-bot', 3, 1);
 
+<<<<<<< HEAD
 INSERT INTO project_tech_stack (project_id, skill_id) VALUES
 
 (1, 3), (1, 10), (1, 36), (1, 1), (1, 7),
@@ -295,6 +441,45 @@ INSERT INTO project_members (project_id, user_id, role, status) VALUES
 
 (6, 1, 'owner', 'active');
 
+=======
+-- ============================================================
+-- SEED DATA: PROJECT TECH STACKS
+-- ============================================================
+INSERT INTO project_tech_stack (project_id, skill_id) VALUES
+-- EcoTrack
+(1, 3), (1, 10), (1, 36), (1, 1), (1, 7),
+-- MedAssist
+(2, 11), (2, 20), (2, 3), (2, 40), (2, 36),
+-- DesignHub
+(3, 4), (3, 1), (3, 50), (3, 7), (3, 10),
+-- SmartFarm
+(4, 11), (4, 40), (4, 42), (4, 3), (4, 39),
+-- CampusConnect
+(5, 43), (5, 1), (5, 30),
+-- CodeReview Bot
+(6, 11), (6, 1), (6, 10), (6, 48);
+
+-- ============================================================
+-- SEED DATA: PROJECT MEMBERS
+-- ============================================================
+INSERT INTO project_members (project_id, user_id, role, status) VALUES
+-- EcoTrack
+(1, 1, 'owner', 'active'), (1, 4, 'member', 'active'), (1, 3, 'member', 'active'),
+-- MedAssist
+(2, 2, 'owner', 'active'), (2, 5, 'member', 'active'),
+-- DesignHub
+(3, 4, 'owner', 'active'), (3, 1, 'member', 'active'), (3, 6, 'member', 'active'),
+-- SmartFarm
+(4, 5, 'owner', 'active'), (4, 2, 'member', 'active'), (4, 3, 'member', 'pending'),
+-- CampusConnect
+(5, 6, 'owner', 'active'), (5, 4, 'member', 'active'),
+-- CodeReview Bot
+(6, 1, 'owner', 'active');
+
+-- ============================================================
+-- SEED DATA: OPPORTUNITIES
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 INSERT INTO opportunities (creator_id, title, description, type, status, skills_required, location, is_remote, deadline) VALUES
 (1, 'Frontend Developer for EcoTrack', 'Looking for a passionate frontend developer to help build the analytics dashboard for EcoTrack. Must be proficient in React and data visualization (D3.js or Chart.js). This is a great opportunity to work on a project that makes a real environmental impact!', 'teammate', 'open', 'React, JavaScript, D3.js', 'Remote', 1, DATE_ADD(NOW(), INTERVAL 14 DAY)),
 (7, 'Summer Research Internship - Distributed Systems', 'Join our research lab for a summer internship focused on distributed systems and cloud computing. Work on cutting-edge problems in consensus algorithms and fault tolerance. Stipend provided. Open to 3rd and 4th year CS students.', 'hiring', 'open', 'Python, Go, Distributed Systems', 'IIT Delhi', 0, DATE_ADD(NOW(), INTERVAL 30 DAY)),
@@ -305,6 +490,12 @@ INSERT INTO opportunities (creator_id, title, description, type, status, skills_
 (4, 'UI/UX Designer for DesignHub', 'Seeking a talented UI/UX designer to help design the collaborative canvas interface for DesignHub. Must have strong Figma skills and understanding of design systems. Bonus if you know Canvas API.', 'teammate', 'open', 'Figma, UI/UX Design, JavaScript', 'Remote', 1, DATE_ADD(NOW(), INTERVAL 20 DAY)),
 (8, 'Campus Ambassador Program', 'Become a DevFest Campus Ambassador! Help organize coding events, hackathons, and tech talks at your college. Perks include: exclusive swag, networking with industry leaders, certificate of recognition, and potential internship referrals.', 'hiring', 'open', 'Communication, Event Management', 'Pan India', 0, DATE_ADD(NOW(), INTERVAL 45 DAY));
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- SEED DATA: OPPORTUNITY APPLICATIONS
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 INSERT INTO opportunity_applications (opportunity_id, user_id, message, status) VALUES
 (1, 4, 'Hi! I''m a frontend developer with strong React and CSS skills. I''d love to help build the analytics dashboard. I have experience with Chart.js and Recharts.', 'accepted'),
 (3, 1, 'I''m a full-stack dev and I''d love to participate in HackIndia! I can handle the frontend/backend work.', 'pending'),
@@ -313,6 +504,12 @@ INSERT INTO opportunity_applications (opportunity_id, user_id, message, status) 
 (5, 1, 'I''m very interested in learning system design. Currently building scalable apps and want to deepen my knowledge.', 'accepted'),
 (6, 2, 'I have extensive experience with TensorFlow and computer vision. Would love to help with the disease detection model!', 'pending');
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- SEED DATA: FEED ACTIVITIES
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 INSERT INTO feed_activities (user_id, type, reference_id, reference_type, metadata, created_at) VALUES
 (1, 'project_created', 1, 'project', '{"title": "EcoTrack - Carbon Footprint Tracker"}', DATE_SUB(NOW(), INTERVAL 5 DAY)),
 (2, 'project_created', 2, 'project', '{"title": "MedAssist - AI Health Companion"}', DATE_SUB(NOW(), INTERVAL 4 DAY)),
@@ -328,6 +525,12 @@ INSERT INTO feed_activities (user_id, type, reference_id, reference_type, metada
 (6, 'project_completed', 5, 'project', '{"title": "CampusConnect - University Social App"}', DATE_SUB(NOW(), INTERVAL 3 HOUR)),
 (1, 'skill_added', 6, 'skill', '{"skill_name": "Next.js", "proficiency": "intermediate"}', DATE_SUB(NOW(), INTERVAL 1 HOUR));
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- SEED DATA: MESSAGES
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 INSERT INTO messages (sender_id, receiver_id, content, is_read, created_at) VALUES
 (1, 4, 'Hey Sneha! Thanks for joining EcoTrack. Can you start working on the dashboard UI?', 1, DATE_SUB(NOW(), INTERVAL 3 DAY)),
 (4, 1, 'Sure Arjun! I''ll start with the wireframes in Figma and share them by tomorrow.', 1, DATE_SUB(NOW(), INTERVAL 3 DAY)),
@@ -338,6 +541,12 @@ INSERT INTO messages (sender_id, receiver_id, content, is_read, created_at) VALU
 (2, 5, 'That''s a great idea! Let''s discuss the architecture tomorrow?', 0, DATE_SUB(NOW(), INTERVAL 1 DAY)),
 (8, 1, 'Hi Arjun! We loved your application for HackIndia. Are you still interested?', 0, DATE_SUB(NOW(), INTERVAL 12 HOUR));
 
+<<<<<<< HEAD
+=======
+-- ============================================================
+-- SEED DATA: NOTIFICATIONS
+-- ============================================================
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 INSERT INTO notifications (user_id, type, title, message, reference_id, reference_type, is_read, created_at) VALUES
 (1, 'application_received', 'New Application', 'Sneha Gupta applied to your opportunity "Frontend Developer for EcoTrack"', 1, 'opportunity', 1, DATE_SUB(NOW(), INTERVAL 3 DAY)),
 (4, 'application_accepted', 'Application Accepted! 🎉', 'Your application for "Frontend Developer for EcoTrack" has been accepted!', 1, 'opportunity', 1, DATE_SUB(NOW(), INTERVAL 3 DAY)),

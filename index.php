@@ -7,6 +7,7 @@
     <meta name="keywords" content="developer, collaboration, hackathon, projects, teamwork, coding, student developers">
     <meta name="author" content="BuildSpace">
     <title>BuildSpace — Developer Collaboration Platform</title>
+<<<<<<< HEAD
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,12 +15,28 @@
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
+=======
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages.css">
 </head>
 <body>
+<<<<<<< HEAD
 
+=======
+    <!-- Loading Screen -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
             <div class="loading-logo">
@@ -34,10 +51,19 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <div id="toast-container" class="toast-container"></div>
 
     <div id="app" class="app" style="display:none;">
 
+=======
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- App Shell -->
+    <div id="app" class="app" style="display:none;">
+        <!-- Sidebar Navigation -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         <nav id="sidebar" class="sidebar">
             <div class="sidebar-header">
                 <a href="#/" class="logo" id="nav-logo">
@@ -50,7 +76,11 @@
                     <i data-lucide="x"></i>
                 </button>
             </div>
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             <div class="sidebar-menu">
                 <a href="#/" class="nav-item active" data-page="feed" id="nav-feed">
                     <i data-lucide="layout-dashboard"></i>
@@ -74,7 +104,11 @@
                     <span id="msg-badge" class="nav-badge" style="display:none;">0</span>
                 </a>
             </div>
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             <div class="sidebar-footer">
                 <div id="sidebar-user" class="sidebar-user" style="display:none;">
                     <div class="sidebar-user-avatar" id="sidebar-avatar">
@@ -91,8 +125,14 @@
             </div>
         </nav>
 
+<<<<<<< HEAD
         <main class="main-content">
 
+=======
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Bar -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             <header class="topbar">
                 <div class="topbar-left">
                     <button id="mobile-menu-btn" class="btn-icon mobile-only">
@@ -144,12 +184,22 @@
                 </div>
             </header>
 
+<<<<<<< HEAD
             <div id="page-content" class="page-content">
 
+=======
+            <!-- Page Content -->
+            <div id="page-content" class="page-content">
+                <!-- Dynamic content loaded here -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             </div>
         </main>
     </div>
 
+<<<<<<< HEAD
+=======
+    <!-- Auth Modal -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     <div id="auth-modal" class="modal" style="display:none;">
         <div class="modal-backdrop"></div>
         <div class="modal-content auth-modal-content">
@@ -163,7 +213,12 @@
                 <h2 id="auth-modal-title">Welcome to BuildSpace</h2>
                 <p id="auth-modal-subtitle">Connect, collaborate, and build amazing projects</p>
             </div>
+<<<<<<< HEAD
 
+=======
+            
+            <!-- Login Form -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             <form id="login-form" class="auth-form">
                 <div class="form-group">
                     <label for="login-email">Email or Username</label>
@@ -196,7 +251,12 @@
                     </div>
                 </div>
             </form>
+<<<<<<< HEAD
 
+=======
+            
+            <!-- Signup Form -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             <form id="signup-form" class="auth-form" style="display:none;">
                 <div class="form-row">
                     <div class="form-group">
@@ -239,6 +299,10 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+=======
+    <!-- Notification Dropdown -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     <div id="notif-dropdown" class="notif-dropdown" style="display:none;">
         <div class="notif-header">
             <h3>Notifications</h3>
@@ -252,6 +316,10 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+=======
+    <!-- Scripts -->
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
     <script src="assets/js/api.js"></script>
     <script src="assets/js/auth.js"></script>
     <script src="assets/js/components.js"></script>

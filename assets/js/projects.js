@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+/**
+ * BuildSpace — Projects Page
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const ProjectsPage = {
     currentPage: 1,
     currentFilter: '',
@@ -6,22 +12,37 @@ const ProjectsPage = {
         if (projectId) {
             return this.renderDetail(projectId);
         }
+<<<<<<< HEAD
 
         const content = document.getElementById('page-content');
         content.innerHTML = '<div class="grid-3">' + Components.loadingSkeletons(6) + '</div>';
 
+=======
+        
+        const content = document.getElementById('page-content');
+        content.innerHTML = '<div class="grid-3">' + Components.loadingSkeletons(6) + '</div>';
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         try {
             const params = { page: this.currentPage, limit: 12 };
             if (this.currentFilter) params.status = this.currentFilter;
 
             const data = await API.projects.list(params);
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             content.innerHTML = `
                 <div class="page-header">
                     <h1 class="page-title"><span class="page-title-gradient">Projects</span></h1>
                     <p class="page-description">Discover amazing projects built by our community. Join a team or start your own.</p>
                 </div>
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                 <div class="filter-bar">
                     <button class="filter-chip ${!this.currentFilter ? 'active' : ''}" onclick="ProjectsPage.filter('')">All</button>
                     <button class="filter-chip ${this.currentFilter === 'planning' ? 'active' : ''}" onclick="ProjectsPage.filter('planning')">📋 Planning</button>
@@ -29,11 +50,19 @@ const ProjectsPage = {
                     <button class="filter-chip ${this.currentFilter === 'completed' ? 'active' : ''}" onclick="ProjectsPage.filter('completed')">✅ Completed</button>
                     ${Auth.isAuthenticated ? `<button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="ProjectsPage.showCreateModal()"><i data-lucide="plus"></i> New Project</button>` : ''}
                 </div>
+<<<<<<< HEAD
 
                 ${data.projects.length > 0 ?
                     `<div class="grid-3" id="projects-grid">${data.projects.map(p => Components.projectCard(p)).join('')}</div>
                     ${Components.pagination(data.page, data.pages, 'ProjectsPage.goToPage')}`
                     : Components.emptyState('folder-kanban', 'No projects yet', 'Be the first to create a project!',
+=======
+                
+                ${data.projects.length > 0 ? 
+                    `<div class="grid-3" id="projects-grid">${data.projects.map(p => Components.projectCard(p)).join('')}</div>
+                    ${Components.pagination(data.page, data.pages, 'ProjectsPage.goToPage')}` 
+                    : Components.emptyState('folder-kanban', 'No projects yet', 'Be the first to create a project!', 
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         Auth.isAuthenticated ? '<button class="btn btn-primary" onclick="ProjectsPage.showCreateModal()">Create Project</button>' : '')
                 }
             `;
@@ -47,17 +76,28 @@ const ProjectsPage = {
     async renderDetail(id) {
         const content = document.getElementById('page-content');
         content.innerHTML = Components.loadingSkeletons(1);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         try {
             const project = await API.projects.get(id);
             const isOwner = Auth.currentUser && Auth.currentUser.id == project.creator_id;
             const membership = project.current_user_membership;
             const activeMembers = (project.members || []).filter(m => m.status === 'active');
             const pendingMembers = (project.members || []).filter(m => m.status === 'pending');
+<<<<<<< HEAD
 
             content.innerHTML = `
                 <button class="btn btn-ghost" onclick="App.navigate('/projects')" style="margin-bottom:16px"><i data-lucide="arrow-left"></i> Back to Projects</button>
 
+=======
+            
+            content.innerHTML = `
+                <button class="btn btn-ghost" onclick="App.navigate('/projects')" style="margin-bottom:16px"><i data-lucide="arrow-left"></i> Back to Projects</button>
+                
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                 <div class="profile-header" style="margin-bottom:24px">
                     <div class="profile-cover" style="height:140px"></div>
                     <div class="profile-info" style="margin-top:-30px">
@@ -76,7 +116,11 @@ const ProjectsPage = {
                                   isOwner ? `<button class="btn btn-secondary" onclick="ProjectsPage.showEditModal(${id})"><i data-lucide="edit"></i> Edit</button>` :
                                   !membership ? `<button class="btn btn-primary" onclick="ProjectsPage.joinProject(${id})"><i data-lucide="user-plus"></i> Request to Join</button>` :
                                   membership.status === 'pending' ? '<button class="btn btn-secondary" disabled>⏳ Request Pending</button>' :
+<<<<<<< HEAD
                                   membership.status === 'active' ? `<button class="btn btn-danger btn-sm" onclick="ProjectsPage.leaveProject(${id})"><i data-lucide="log-out"></i> Leave</button>` :
+=======
+                                  membership.status === 'active' ? `<button class="btn btn-danger btn-sm" onclick="ProjectsPage.leaveProject(${id})"><i data-lucide="log-out"></i> Leave</button>` : 
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                                   `<button class="btn btn-primary" onclick="ProjectsPage.joinProject(${id})"><i data-lucide="user-plus"></i> Request to Join</button>`
                                 }
                             </div>
@@ -90,7 +134,11 @@ const ProjectsPage = {
                             <h3 class="card-title" style="margin-bottom:12px">About</h3>
                             <div class="card-body" style="white-space:pre-wrap">${Utils.escapeHtml(project.description)}</div>
                         </div>
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         <div class="card">
                             <h3 class="card-title" style="margin-bottom:12px">Tech Stack</h3>
                             <div class="skills-list">
@@ -99,7 +147,11 @@ const ProjectsPage = {
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                     <div>
                         <div class="card" style="margin-bottom:20px">
                             <h3 class="card-title" style="margin-bottom:16px">Team (${activeMembers.length}/${project.max_members})</h3>
@@ -114,7 +166,11 @@ const ProjectsPage = {
                                 </div>
                             `).join('')}
                         </div>
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         ${isOwner && pendingMembers.length > 0 ? `
                             <div class="card">
                                 <h3 class="card-title" style="margin-bottom:16px">Pending Requests (${pendingMembers.length})</h3>
@@ -189,10 +245,17 @@ const ProjectsPage = {
 
     async showCreateModal() {
         if (!Auth.requireAuth()) return;
+<<<<<<< HEAD
 
         let skills = [];
         try { skills = await API.users.allSkills(); } catch(e) {}
 
+=======
+        
+        let skills = [];
+        try { skills = await API.users.allSkills(); } catch(e) {}
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         const modalHtml = Components.modal('create-project-modal', '<i data-lucide="folder-plus"></i> Create New Project', `
             <form id="create-project-form">
                 <div class="form-group">
@@ -226,6 +289,7 @@ const ProjectsPage = {
                 <button type="submit" class="btn btn-primary btn-full" style="margin-top:16px"><i data-lucide="rocket"></i> Create Project</button>
             </form>
         `);
+<<<<<<< HEAD
 
         document.body.insertAdjacentHTML('beforeend', modalHtml);
         lucide.createIcons();
@@ -234,6 +298,16 @@ const ProjectsPage = {
             e.preventDefault();
             const techStack = [...document.querySelectorAll('#cp-tech-stack .selected')].map(el => parseInt(el.dataset.id));
 
+=======
+        
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        lucide.createIcons();
+        
+        document.getElementById('create-project-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const techStack = [...document.querySelectorAll('#cp-tech-stack .selected')].map(el => parseInt(el.dataset.id));
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             try {
                 const result = await API.projects.create({
                     title: document.getElementById('cp-title').value,
@@ -243,7 +317,11 @@ const ProjectsPage = {
                     max_members: parseInt(document.getElementById('cp-max').value),
                     tech_stack: techStack
                 });
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                 document.getElementById('create-project-modal').remove();
                 Toast.success('Project created! 🚀');
                 App.navigate(`/projects/${result.id}`);
@@ -257,7 +335,11 @@ const ProjectsPage = {
             let skills = [];
             try { skills = await API.users.allSkills(); } catch(e) {}
             const techIds = (project.tech_stack || []).map(s => s.id);
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             const modalHtml = Components.modal('edit-project-modal', '<i data-lucide="edit"></i> Edit Project', `
                 <form id="edit-project-form">
                     <div class="form-group">
@@ -303,6 +385,7 @@ const ProjectsPage = {
                     <button type="submit" class="btn btn-primary btn-full" style="margin-top:16px">Save Changes</button>
                 </form>
             `);
+<<<<<<< HEAD
 
             document.body.insertAdjacentHTML('beforeend', modalHtml);
             lucide.createIcons();
@@ -311,6 +394,16 @@ const ProjectsPage = {
                 e.preventDefault();
                 const techStack = [...document.querySelectorAll('#ep-tech-stack .selected')].map(el => parseInt(el.dataset.id));
 
+=======
+            
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            lucide.createIcons();
+            
+            document.getElementById('edit-project-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const techStack = [...document.querySelectorAll('#ep-tech-stack .selected')].map(el => parseInt(el.dataset.id));
+                
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                 try {
                     await API.projects.update({
                         id: id,

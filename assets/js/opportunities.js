@@ -1,9 +1,16 @@
+<<<<<<< HEAD
+=======
+/**
+ * BuildSpace — Opportunities Page
+ */
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 const OpportunitiesPage = {
     currentPage: 1,
     currentFilter: '',
 
     async render(oppId = null) {
         if (oppId) return this.renderDetail(oppId);
+<<<<<<< HEAD
 
         const content = document.getElementById('page-content');
         content.innerHTML = '<div class="grid-3">' + Components.loadingSkeletons(6) + '</div>';
@@ -14,12 +21,28 @@ const OpportunitiesPage = {
 
             const data = await API.opportunities.list(params);
 
+=======
+        
+        const content = document.getElementById('page-content');
+        content.innerHTML = '<div class="grid-3">' + Components.loadingSkeletons(6) + '</div>';
+        
+        try {
+            const params = { page: this.currentPage, limit: 12 };
+            if (this.currentFilter) params.type = this.currentFilter;
+            
+            const data = await API.opportunities.list(params);
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             content.innerHTML = `
                 <div class="page-header">
                     <h1 class="page-title"><span class="page-title-gradient">Opportunities</span></h1>
                     <p class="page-description">Discover hackathons, find teammates, explore mentorship, and open-source contributions.</p>
                 </div>
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                 <div class="filter-bar">
                     <button class="filter-chip ${!this.currentFilter ? 'active' : ''}" onclick="OpportunitiesPage.filter('')">All</button>
                     <button class="filter-chip ${this.currentFilter === 'teammate' ? 'active' : ''}" onclick="OpportunitiesPage.filter('teammate')">👥 Teammates</button>
@@ -29,11 +52,19 @@ const OpportunitiesPage = {
                     <button class="filter-chip ${this.currentFilter === 'mentorship' ? 'active' : ''}" onclick="OpportunitiesPage.filter('mentorship')">🎓 Mentorship</button>
                     ${Auth.isAuthenticated ? `<button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="OpportunitiesPage.showCreateModal()"><i data-lucide="plus"></i> Post</button>` : ''}
                 </div>
+<<<<<<< HEAD
 
                 ${data.opportunities.length > 0 ?
                     `<div class="grid-2" id="opps-grid">${data.opportunities.map(o => Components.opportunityCard(o)).join('')}</div>
                     ${Components.pagination(data.page, data.pages, 'OpportunitiesPage.goToPage')}`
                     : Components.emptyState('compass', 'No opportunities', 'No opportunities match your filter.',
+=======
+                
+                ${data.opportunities.length > 0 ?
+                    `<div class="grid-2" id="opps-grid">${data.opportunities.map(o => Components.opportunityCard(o)).join('')}</div>
+                    ${Components.pagination(data.page, data.pages, 'OpportunitiesPage.goToPage')}`
+                    : Components.emptyState('compass', 'No opportunities', 'No opportunities match your filter.', 
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                         Auth.isAuthenticated ? '<button class="btn btn-primary" onclick="OpportunitiesPage.showCreateModal()">Post Opportunity</button>' : '')
                 }
             `;
@@ -47,6 +78,7 @@ const OpportunitiesPage = {
     async renderDetail(id) {
         const content = document.getElementById('page-content');
         content.innerHTML = Components.loadingSkeletons(1);
+<<<<<<< HEAD
 
         try {
             const opp = await API.opportunities.get(id);
@@ -55,6 +87,16 @@ const OpportunitiesPage = {
             content.innerHTML = `
                 <button class="btn btn-ghost" onclick="App.navigate('/opportunities')" style="margin-bottom:16px"><i data-lucide="arrow-left"></i> Back</button>
 
+=======
+        
+        try {
+            const opp = await API.opportunities.get(id);
+            const isCreator = Auth.currentUser && Auth.currentUser.id == opp.creator_id;
+            
+            content.innerHTML = `
+                <button class="btn btn-ghost" onclick="App.navigate('/opportunities')" style="margin-bottom:16px"><i data-lucide="arrow-left"></i> Back</button>
+                
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                 <div class="card" style="margin-bottom:24px;padding:32px">
                     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px">
                         <div>
@@ -73,23 +115,39 @@ const OpportunitiesPage = {
                             ${isCreator ? `
                                 <button class="btn btn-secondary" onclick="OpportunitiesPage.toggleStatus(${id},'${opp.status === 'open' ? 'closed' : 'open'}')">
                                     <i data-lucide="${opp.status === 'open' ? 'x-circle' : 'check-circle'}"></i> ${opp.status === 'open' ? 'Close' : 'Reopen'}
+<<<<<<< HEAD
                                 </button>` :
                               !Auth.isAuthenticated ? '<button class="btn btn-primary" onclick="Auth.showModal(\'login\')">Log in to Apply</button>' :
                               opp.current_user_application ?
                                 (opp.current_user_application.status === 'pending' ? '<button class="btn btn-secondary" disabled>⏳ Application Pending</button>' :
                                  opp.current_user_application.status === 'accepted' ? '<span class="badge badge-green">✅ Accepted</span>' :
+=======
+                                </button>` : 
+                              !Auth.isAuthenticated ? '<button class="btn btn-primary" onclick="Auth.showModal(\'login\')">Log in to Apply</button>' :
+                              opp.current_user_application ? 
+                                (opp.current_user_application.status === 'pending' ? '<button class="btn btn-secondary" disabled>⏳ Application Pending</button>' :
+                                 opp.current_user_application.status === 'accepted' ? '<span class="badge badge-green">✅ Accepted</span>' : 
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                                  '<span class="badge badge-red">Application not selected</span>') :
                               opp.status === 'open' ? `<button class="btn btn-primary" onclick="OpportunitiesPage.showApplyModal(${id})"><i data-lucide="send"></i> Apply Now</button>` :
                               '<button class="btn btn-secondary" disabled>Closed</button>'
                             }
                         </div>
                     </div>
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                     <div style="margin-bottom:20px">
                         <h3 style="font-size:0.85rem;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Description</h3>
                         <div style="color:var(--text-secondary);line-height:1.7;white-space:pre-wrap">${Utils.escapeHtml(opp.description)}</div>
                     </div>
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                     ${opp.skills_required ? `
                         <div>
                             <h3 style="font-size:0.85rem;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Skills Required</h3>
@@ -99,7 +157,11 @@ const OpportunitiesPage = {
                         </div>
                     ` : ''}
                 </div>
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
                 ${isCreator && opp.applications ? `
                     <div class="card">
                         <h3 class="card-title" style="margin-bottom:16px">Applications (${opp.applications.length})</h3>
@@ -152,7 +214,11 @@ const OpportunitiesPage = {
         try {
             await API.opportunities.handleApplication({ application_id: appId, action });
             Toast.success(`Application ${action}ed`);
+<<<<<<< HEAD
 
+=======
+            // Re-render current detail
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             const hash = window.location.hash;
             const match = hash.match(/#\/opportunities\/(\d+)/);
             if (match) this.renderDetail(match[1]);
@@ -170,10 +236,17 @@ const OpportunitiesPage = {
                 <button type="submit" class="btn btn-primary btn-full"><i data-lucide="send"></i> Submit Application</button>
             </form>
         `);
+<<<<<<< HEAD
 
         document.body.insertAdjacentHTML('beforeend', modalHtml);
         lucide.createIcons();
 
+=======
+        
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        lucide.createIcons();
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('apply-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             try {
@@ -190,7 +263,11 @@ const OpportunitiesPage = {
 
     async showCreateModal() {
         if (!Auth.requireAuth()) return;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         const modalHtml = Components.modal('create-opp-modal', '<i data-lucide="compass"></i> Post Opportunity', `
             <form id="create-opp-form">
                 <div class="form-group">
@@ -233,15 +310,26 @@ const OpportunitiesPage = {
                 <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px"><i data-lucide="send"></i> Post Opportunity</button>
             </form>
         `);
+<<<<<<< HEAD
 
         document.body.insertAdjacentHTML('beforeend', modalHtml);
         lucide.createIcons();
 
+=======
+        
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        lucide.createIcons();
+        
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
         document.getElementById('create-opp-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const selectedType = document.querySelector('#co-type .selected');
             if (!selectedType) { Toast.warning('Please select an opportunity type'); return; }
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
             try {
                 const result = await API.opportunities.create({
                     title: document.getElementById('co-title').value,
