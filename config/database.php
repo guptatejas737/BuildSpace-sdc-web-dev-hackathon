@@ -8,9 +8,9 @@
 >>>>>>> 404a8f27d37ca0f45112a3f672a1e9a0345c5b73
 
 define('DB_HOST', 'sql211.infinityfree.com');
-define('DB_NAME', 'if0_34657401_sdchackathon');
-define('DB_USER', 'if0_34657401');
-define('DB_PASS', 'BkSKrAIeDj');
+define('DB_NAME', 'DB NAME');
+define('DB_USER', 'USERNAME');
+define('DB_PASS', 'DATABASE PASSWORD');
 define('DB_CHARSET', 'utf8mb4');
 
 function getDB() {
